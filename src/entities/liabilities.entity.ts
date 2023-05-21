@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import User from "./user.entity";
 
 @Entity("liabilities")
 class Liabilities {
@@ -24,4 +26,9 @@ class Liabilities {
 
   @CreateDateColumn()
   createdAt: string;
+
+  @ManyToOne(() => User, (user) => user.liabilities, { onDelete: "CASCADE" })
+  user: User;
 }
+
+export default Liabilities;

@@ -2,8 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import User from "./user.entity";
+import Cost from "./costs.entity";
+import Employee_service from "./employees_service.entity";
 
 @Entity("services")
 class Service {
@@ -27,4 +33,19 @@ class Service {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @ManyToOne(() => User, (user) => user.services, { onDelete: "CASCADE" })
+  user: User;
+
+  @OneToMany(() => Cost, (cost) => cost.service, { cascade: true })
+  cost: Cost[];
+
+  @ManyToOne(
+    () => Employee_service,
+    (employee_service) => employee_service.services,
+    { onDelete: "CASCADE" }
+  )
+  employee_service: Employee_service;
 }
+
+export default Service;
