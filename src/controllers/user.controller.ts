@@ -37,7 +37,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
   return res.status(204).json(deleteUser);
 };
 
-export const sendResetEmailPasswordController = async (
+/* export const sendResetEmailPasswordController = async (
   req: Request,
   res: Response
 ) => {
@@ -57,4 +57,4 @@ export const resetPasswordController = async (req: Request, res: Response) => {
   await usersService.resetPassword(password, token);
 
   return res.json({ message: "password change with sucess" });
-};
+}; */
