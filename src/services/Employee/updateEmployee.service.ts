@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
-import Employee from "../../entities/employees.entity";
 import { AppError } from "../../errors/AppError";
+import Employee from "../../entities/employees.entity";
 
 export const updateEmployeeService = async (data: any, id: string) => {
   const employeeRepo = AppDataSource.getRepository(Employee);
