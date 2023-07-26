@@ -14,5 +14,5 @@ export const retriveAssetService = async (id: string) => {
     throw new AppError("Asset not exist", 409);
   }
 
-  return assert;
+  return asset;
 };

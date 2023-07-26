@@ -24,6 +24,7 @@ export const userRetriveController = async (req: Request, res: Response) => {
 
 export const updateUserController = async (req: Request, res: Response) => {
   const updateUserBody = req.body;
+  console.log(req.body);
   const id = req.user.id;
 
   const updateUser = await updateUserService(updateUserBody, id);
