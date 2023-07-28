@@ -20,7 +20,7 @@ class User {
   @Column({ length: 40 })
   name: string;
 
-  @Column({ length: 40 })
+  @Column({ length: 40, unique: true })
   email: string;
 
   @Column()
