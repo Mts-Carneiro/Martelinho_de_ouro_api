@@ -1,8 +1,20 @@
 import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import Service from "../../entities/Services.entity";
+import {
+  serviceResponseSchema,
+  serviceSchema,
+} from "../../schemas/service.schema";
+import {
+  IService,
+  IServiceRequest,
+  IServiceUpdate,
+} from "../../interfaces/service.interface";
 
-export const updateServiceService = async (serviceId: string, data: any) => {
+export const updateServiceService = async (
+  serviceId: string,
+  data: IServiceUpdate
+) => {
   const serviceRepo = AppDataSource.getRepository(Service);
 
   const service = await serviceRepo.findOneBy({
@@ -20,5 +32,7 @@ export const updateServiceService = async (serviceId: string, data: any) => {
 
   await serviceRepo.save(newService);
 
-  return newService;
+  const response: IServiceRequest = serviceSchema.parse(newService);
+
+  return response;
 };

@@ -1,15 +1,33 @@
 import AppDataSource from "../../data-source";
 import Service from "../../entities/Services.entity";
+import User from "../../entities/user.entity";
+import { AppError } from "../../errors/AppError";
+import { IService, IServiceRequest } from "../../interfaces/service.interface";
+import { serviceResponseSchema } from "../../schemas/service.schema";
 
-export const createServiceService = async (data: any, userId: string) => {
+export const createServiceService = async (
+  data: IServiceRequest,
+  userId: string
+): Promise<IService> => {
   const serviceRepo = AppDataSource.getRepository(Service);
+  const userRepo = AppDataSource.getRepository(User);
+
+  const user = await userRepo.findOneBy({
+    id: userId,
+  });
+
+  if (!user) {
+    throw new AppError("This user not exist", 409);
+  }
 
   const service = serviceRepo.create({
     ...data,
-    user: userId,
+    user: user,
   });
 
   await serviceRepo.save(service);
 
-  return service;
+  const response = serviceResponseSchema.parse(service);
+
+  return response;
 };

@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes";
 import loginRoutes from "./routes/login.routes";
 import costRoutes from "./routes/cost.routes";
 import liabilityRoutes from "./routes/liability.routes";
+import serviceRoutes from "./routes/service.routes";
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use("/login", loginRoutes);
 app.use("/asset", assetRoutes);
 app.use("/cost", costRoutes);
 app.use("/liability", liabilityRoutes);
+app.use("/service", serviceRoutes);
 
 export default app;

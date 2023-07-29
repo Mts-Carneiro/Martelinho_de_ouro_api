@@ -28,8 +28,8 @@ class Service {
   @Column({ length: 50 })
   description: string;
 
-  @Column({ length: 50 })
-  value: string;
+  @Column()
+  value: number;
 
   @CreateDateColumn()
   createdAt: Date;
