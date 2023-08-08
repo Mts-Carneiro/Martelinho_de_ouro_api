@@ -1,8 +1,16 @@
 import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import Employee from "../../entities/employees.entity";
+import {
+  IEmployee,
+  IEmployeeUpdate,
+} from "../../interfaces/employee.interface";
+import { employeeResponseSchema } from "../../schemas/employee.schema";
 
-export const updateEmployeeService = async (data: any, id: string) => {
+export const updateEmployeeService = async (
+  data: IEmployeeUpdate,
+  id: string
+): Promise<IEmployee> => {
   const employeeRepo = AppDataSource.getRepository(Employee);
 
   const employee = await employeeRepo.findOneBy({
@@ -20,5 +28,7 @@ export const updateEmployeeService = async (data: any, id: string) => {
 
   await employeeRepo.save(newEmployee);
 
-  return newEmployee;
+  const response = employeeResponseSchema.parse(newEmployee);
+
+  return response;
 };

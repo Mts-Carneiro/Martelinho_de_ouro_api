@@ -1,8 +1,12 @@
 import AppDataSource from "../../data-source";
 import Employee from "../../entities/employees.entity";
 import { AppError } from "../../errors/AppError";
+import { IEmployee } from "../../interfaces/employee.interface";
+import { employeeResponseSchema } from "../../schemas/employee.schema";
 
-export const retriveEmployeeService = async (id: string) => {
+export const retriveEmployeeService = async (
+  id: string
+): Promise<IEmployee> => {
   const employeeRepo = AppDataSource.getRepository(Employee);
 
   const employee = employeeRepo.findOneBy({
@@ -13,5 +17,7 @@ export const retriveEmployeeService = async (id: string) => {
     throw new AppError("Employee not exist", 409);
   }
 
-  return employee;
+  const response = employeeResponseSchema.parse(employee);
+
+  return response;
 };
