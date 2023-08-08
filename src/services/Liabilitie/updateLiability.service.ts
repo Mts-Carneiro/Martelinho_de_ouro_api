@@ -1,8 +1,16 @@
 import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import Liabilities from "../../entities/liabilities.entity";
+import {
+  ICashOperation,
+  ICashOperationUpdate,
+} from "../../interfaces/cash_operation.interface";
+import { cashOperationResponseSchema } from "../../schemas/cash_operation.schema";
 
-export const updateLiabilityService = async (data: any, id: string) => {
+export const updateLiabilityService = async (
+  data: ICashOperationUpdate,
+  id: string
+): Promise<ICashOperation> => {
   const liabilityRepo = AppDataSource.getRepository(Liabilities);
 
   const liability = await liabilityRepo.findOneBy({
@@ -20,5 +28,7 @@ export const updateLiabilityService = async (data: any, id: string) => {
 
   await liabilityRepo.save(newLiability);
 
-  return newLiability;
+  const response = cashOperationResponseSchema.parse(newLiability);
+
+  return response;
 };
