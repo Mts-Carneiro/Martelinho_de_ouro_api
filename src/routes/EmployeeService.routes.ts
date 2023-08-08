@@ -5,9 +5,9 @@ import {
   createEmployeeServiceController,
   deleteEmployeeServiceController,
   listAllEmployeesServiceController,
+  retriveEmployeeServiceController,
   updateEmployeeServiceController,
 } from "../controllers/employees_service.controller";
-import { retriveEmployeeSErviceService } from "../services/Employees_services/retriveEmployee_service.service";
 
 const employeeServiceRoutes = Router();
 
@@ -24,7 +24,7 @@ employeeServiceRoutes.post(
 employeeServiceRoutes.get(
   "/:id",
   ensureAuthMiddleware,
-  retriveEmployeeSErviceService
+  retriveEmployeeServiceController
 );
 employeeServiceRoutes.patch(
   "/:id",
