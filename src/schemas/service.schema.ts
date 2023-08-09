@@ -1,4 +1,4 @@
-import { object, z } from "zod";
+import { z } from "zod";
 import { userResponseSchema } from "./user.schema";
 
 const serviceSchema = z.object({
@@ -9,6 +9,8 @@ const serviceSchema = z.object({
     .length(7, "The plate numbering must be seven digits long"),
   description: z.string(),
   value: z.number(),
+  status: z.string(),
+  delivery_date: z.string(),
 });
 
 const serviceResponseSchema = serviceSchema.extend({

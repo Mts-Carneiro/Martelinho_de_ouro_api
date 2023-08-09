@@ -22,7 +22,7 @@ class Service {
   @Column({ length: 50 })
   vehicle: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 7 })
   license_plate: string;
 
   @Column({ length: 50 })
@@ -30,6 +30,12 @@ class Service {
 
   @Column()
   value: number;
+
+  @Column()
+  status: string;
+
+  @Column()
+  delivery_date: Date;
 
   @CreateDateColumn()
   createdAt: Date;

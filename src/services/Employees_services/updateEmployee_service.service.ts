@@ -1,8 +1,16 @@
 import AppDataSource from "../../data-source";
 import Employee_service from "../../entities/employees_service.entity";
 import { AppError } from "../../errors/AppError";
+import {
+  IEmployeeService,
+  IEmployeeServiceUpdate,
+} from "../../interfaces/employee_service.interface";
+import { employeeServiceResponseSchema } from "../../schemas/employee_service.schema";
 
-export const updateEmployeeServiceService = async (data: any, id: string) => {
+export const updateEmployeeServiceService = async (
+  data: IEmployeeServiceUpdate,
+  id: string
+): Promise<IEmployeeService> => {
   const employees_serviceRepo = AppDataSource.getRepository(Employee_service);
 
   const employees_service = await employees_serviceRepo.findOneBy({
@@ -20,5 +28,7 @@ export const updateEmployeeServiceService = async (data: any, id: string) => {
 
   await employees_serviceRepo.save(newEmployees_service);
 
-  return employees_service;
+  const response = employeeServiceResponseSchema.parse(employees_service);
+
+  return response;
 };
