@@ -7,13 +7,37 @@ import {
   retriveCostController,
   updateCostController,
 } from "../controllers/cost.controller";
+import ensureDataIsValidMiddleware from "../middleware/ensureDetailIsValid.middleware";
+import { costSchema, costUpdateSchema } from "../schemas/cost.schema";
+import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
 
 const costRoutes = Router();
 
 costRoutes.get("", ensureAuthMiddleware, listCostsController);
-costRoutes.post("", ensureAuthMiddleware, createCostController);
-costRoutes.get("/:id", ensureAuthMiddleware, retriveCostController);
-costRoutes.patch("/:id", ensureAuthMiddleware, updateCostController);
-costRoutes.delete("/:id", ensureAuthMiddleware, deleteCostController);
+costRoutes.post(
+  "",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(costSchema),
+  createCostController
+);
+costRoutes.get(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUUIDIsValid,
+  retriveCostController
+);
+costRoutes.patch(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUUIDIsValid,
+  ensureDataIsValidMiddleware(costUpdateSchema),
+  updateCostController
+);
+costRoutes.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUUIDIsValid,
+  deleteCostController
+);
 
 export default costRoutes;

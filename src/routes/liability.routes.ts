@@ -7,13 +7,40 @@ import {
   retriveLiabilityController,
   updateLiabilityController,
 } from "../controllers/liability.controller";
+import ensureDataIsValidMiddleware from "../middleware/ensureDetailIsValid.middleware";
+import {
+  cashOperationSchema,
+  cashOperationUpdateSchema,
+} from "../schemas/cash_operation.schema";
+import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
 
 const liabilityRoutes = Router();
 
 liabilityRoutes.get("", ensureAuthMiddleware, listAllLiabilitiesController);
-liabilityRoutes.post("", ensureAuthMiddleware, createLiabilityController);
-liabilityRoutes.get("/:id", ensureAuthMiddleware, retriveLiabilityController);
-liabilityRoutes.patch("/:id", ensureAuthMiddleware, updateLiabilityController);
-liabilityRoutes.delete("/:id", ensureAuthMiddleware, deleteLiabilityController);
+liabilityRoutes.post(
+  "",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(cashOperationSchema),
+  createLiabilityController
+);
+liabilityRoutes.get(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUUIDIsValid,
+  retriveLiabilityController
+);
+liabilityRoutes.patch(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureUUIDIsValid,
+  ensureDataIsValidMiddleware(cashOperationUpdateSchema),
+  updateLiabilityController
+);
+liabilityRoutes.delete(
+  "/:id",
+  ensureUUIDIsValid,
+  ensureAuthMiddleware,
+  deleteLiabilityController
+);
 
 export default liabilityRoutes;
