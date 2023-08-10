@@ -7,9 +7,8 @@ import { deleteCostService } from "../services/Cost/daleteAsset.service";
 
 export const createCostController = async (req: Request, res: Response) => {
   const data = req.body;
-  const user = req.user.id;
 
-  const cost = await creatCostService(data, user);
+  const cost = await creatCostService(data);
 
   return res.status(201).json(cost);
 };

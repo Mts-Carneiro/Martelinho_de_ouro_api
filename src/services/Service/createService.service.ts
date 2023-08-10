@@ -22,6 +22,7 @@ export const createServiceService = async (
 
   const service = serviceRepo.create({
     ...data,
+    delivery_date: new Date(data.delivery_date),
     user: user,
   });
 

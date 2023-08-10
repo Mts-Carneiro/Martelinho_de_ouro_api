@@ -14,12 +14,7 @@ import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
 const serviceRoutes = Router();
 
 serviceRoutes.get("", ensureAuthMiddleware, listAllServiceController);
-serviceRoutes.post(
-  "",
-  ensureAuthMiddleware,
-  ensureDataIsValidMiddleware(serviceSchema),
-  createServiceController
-);
+serviceRoutes.post("", ensureAuthMiddleware, createServiceController);
 serviceRoutes.get(
   "/:id",
   ensureAuthMiddleware,

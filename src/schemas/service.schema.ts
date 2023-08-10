@@ -10,7 +10,7 @@ const serviceSchema = z.object({
   description: z.string(),
   value: z.number(),
   status: z.string(),
-  delivery_date: z.string(),
+  delivery_date: z.date(),
 });
 
 const serviceResponseSchema = serviceSchema.extend({
