@@ -9,7 +9,7 @@ export const retriveEmployeeService = async (
 ): Promise<IEmployee> => {
   const employeeRepo = AppDataSource.getRepository(Employee);
 
-  const employee = employeeRepo.findOneBy({
+  const employee = await employeeRepo.findOneBy({
     id: id,
   });
 

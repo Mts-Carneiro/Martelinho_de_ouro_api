@@ -9,7 +9,7 @@ const cashOperationSchema = z.object({
 
 const cashOperationResponseSchema = cashOperationSchema.extend({
   id: z.string(),
-  createdAt: z.string(),
+  createdAt: z.date(),
 });
 
 const cashOperationUpdateSchema = cashOperationSchema.partial();

@@ -9,7 +9,7 @@ export const retriveLiabilityService = async (
 ): Promise<ICashOperation> => {
   const liabilityRepo = AppDataSource.getRepository(Liabilities);
 
-  const liability = liabilityRepo.findOneBy({
+  const liability = await liabilityRepo.findOneBy({
     id: id,
   });
 

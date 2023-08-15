@@ -46,3 +46,5 @@ employeeServiceRoutes.delete(
   ensureUUIDIsValid,
   deleteEmployeeServiceController
 );
+
+export default employeeServiceRoutes;

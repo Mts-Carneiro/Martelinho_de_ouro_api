@@ -6,7 +6,7 @@ const employeeSchema = z.object({
 
 const employeeResponseSchema = employeeSchema.extend({
   id: z.string(),
-  createdAt: z.string(),
+  createdAt: z.date(),
 });
 
 const listEmployeesSchema = employeeResponseSchema.array();

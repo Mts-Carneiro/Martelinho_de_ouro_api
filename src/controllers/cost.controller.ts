@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { creatCostService } from "../services/Cost/createAsset.service";
-import { retriveCostService } from "../services/Cost/retriveAsset.service";
-import { listAllCostsService } from "../services/Cost/listAssets.service";
-import { updateCostService } from "../services/Cost/updateAsset.service";
-import { deleteCostService } from "../services/Cost/daleteAsset.service";
+import { creatCostService } from "../services/Cost/createCost.service";
+import { retriveCostService } from "../services/Cost/retriveCost.service";
+import { listAllCostsService } from "../services/Cost/listCosts.service";
+import { updateCostService } from "../services/Cost/updateCost.service";
+import { deleteCostService } from "../services/Cost/daleteCost.service";
 
 export const createCostController = async (req: Request, res: Response) => {
   const data = req.body;

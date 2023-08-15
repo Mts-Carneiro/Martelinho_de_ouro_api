@@ -5,14 +5,13 @@ import { employeeSchema } from "./employee.schema";
 const employeeServiceSchema = z.object({
   value: z.number(),
   service_type: z.string(),
-  service: serviceSchema,
-  employee: employeeSchema,
+  service: z.string(),
+  employee: z.string(),
 });
 
 const employeeServiceResponseSchema = employeeServiceSchema.extend({
   id: z.string(),
-  service: serviceSchema,
-  employee: employeeSchema,
+  createdAt: z.date(),
 });
 
 const listEmployeeServiceSchema = employeeServiceSchema.array();

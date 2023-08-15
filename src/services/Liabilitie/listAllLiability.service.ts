@@ -9,7 +9,7 @@ export const listAllLiabilitiesServices = async (
 ): Promise<ICashOperations> => {
   const liabilityRepo = AppDataSource.getRepository(Liabilities);
 
-  const liabilities = liabilityRepo.find({
+  const liabilitiesList = await liabilityRepo.find({
     where: {
       user: {
         id: userId,
@@ -20,11 +20,11 @@ export const listAllLiabilitiesServices = async (
     },
   });
 
-  if (!liabilities) {
+  if (!liabilitiesList) {
     throw new AppError("Liabilities not exist", 409);
   }
 
-  const response = listCashOperations.parse(liabilities);
+  const response = listCashOperations.parse(liabilitiesList);
 
   return response;
 };

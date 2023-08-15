@@ -13,7 +13,7 @@ class Asset {
   id: string;
 
   @Column({ length: 50 })
-  Tipe: string;
+  tipe: string;
 
   @Column({ length: 50 })
   name: string;

@@ -9,7 +9,7 @@ export const listAllEmployeesService = async (
 ): Promise<IEmployees> => {
   const employeeRepo = AppDataSource.getRepository(Employee);
 
-  const employees = employeeRepo.find({
+  const employees = await employeeRepo.find({
     where: {
       user: {
         id: userId,
