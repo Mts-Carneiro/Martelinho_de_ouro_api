@@ -4,6 +4,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import User from "./user.entity";
@@ -23,12 +24,12 @@ class Employee {
   @ManyToOne(() => User, (user) => user.employee, { onDelete: "CASCADE" })
   user: User;
 
-  @ManyToOne(
+  @OneToMany(
     () => Employee_service,
-    (employee_service) => employee_service.employees,
+    (employee_service) => employee_service.employee,
     { onDelete: "CASCADE" }
   )
-  employee_service: Employee_service;
+  employee_service: Employee_service[];
 }
 
 export default Employee;

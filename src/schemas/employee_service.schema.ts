@@ -9,9 +9,11 @@ const employeeServiceSchema = z.object({
   employee: z.string(),
 });
 
-const employeeServiceResponseSchema = employeeServiceSchema.extend({
+const employeeServiceResponseSchema = z.object({
   id: z.string(),
   createdAt: z.date(),
+  value: z.number(),
+  service_type: z.string(),
 });
 
 const listEmployeeServiceSchema = employeeServiceSchema.array();

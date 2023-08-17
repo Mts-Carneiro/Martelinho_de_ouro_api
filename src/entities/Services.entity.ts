@@ -46,12 +46,12 @@ class Service {
   @OneToMany(() => Cost, (cost) => cost.service, { cascade: true })
   cost: Cost[];
 
-  @ManyToOne(
+  @OneToMany(
     () => Employee_service,
-    (employee_service) => employee_service.services,
+    (employee_service) => employee_service.service,
     { onDelete: "CASCADE" }
   )
-  employee_service: Employee_service;
+  employee_service: Employee_service[];
 }
 
 export default Service;

@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -22,15 +23,15 @@ class Employee_service {
   @CreateDateColumn()
   createdAt: Date;
 
-  @OneToMany(() => Service, (service) => service.employee_service, {
+  @ManyToOne(() => Service, (service) => service.employee_service, {
     cascade: true,
   })
-  services: Service[];
+  service: Service;
 
-  @OneToMany(() => Employee, (employee) => employee.employee_service, {
+  @ManyToOne(() => Employee, (employee) => employee.employee_service, {
     cascade: true,
   })
-  employees: Employee[];
+  employee: Employee;
 }
 
 export default Employee_service;

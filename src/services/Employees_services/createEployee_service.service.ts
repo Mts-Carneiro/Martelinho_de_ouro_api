@@ -34,8 +34,8 @@ export const createEmployeeServiceService = async (
 
   const employees_service = employees_serviceRepo.create({
     ...data,
-    services: service,
-    employees: employeer,
+    employee: employeer,
+    service: service,
   });
 
   await employees_serviceRepo.save(employees_service);

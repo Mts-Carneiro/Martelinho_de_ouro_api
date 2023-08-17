@@ -10,8 +10,8 @@ export const listAllEmployeesServiceService =
 
     const employees_service = employees_serviceRepo.find({
       relations: {
-        employees: true,
-        services: true,
+        employee: true,
+        service: true,
       },
     });
 
