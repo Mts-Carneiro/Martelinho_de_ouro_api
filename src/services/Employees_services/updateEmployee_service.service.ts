@@ -28,7 +28,7 @@ export const updateEmployeeServiceService = async (
 
   await employees_serviceRepo.save(newEmployees_service);
 
-  const response = employeeServiceResponseSchema.parse(employees_service);
+  const response = employeeServiceResponseSchema.parse(newEmployees_service);
 
   return response;
 };

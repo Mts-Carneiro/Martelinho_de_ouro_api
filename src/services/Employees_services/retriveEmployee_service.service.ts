@@ -9,11 +9,17 @@ export const retriveEmployeeSErviceService = async (
 ): Promise<IEmployeeService> => {
   const employees_serviceRepo = AppDataSource.getRepository(Employee_service);
 
-  const employees_service = employees_serviceRepo.findOneBy({
-    id: id,
+  const employees_service = await employees_serviceRepo.findOne({
+    where: {
+      id: id,
+    },
+    relations: {
+      employee: true,
+      service: true,
+    },
   });
 
-  if (!employees_serviceRepo) {
+  if (!employees_service) {
     throw new AppError("employees_service not exist", 409);
   }
 

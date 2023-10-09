@@ -5,8 +5,8 @@ import { employeeSchema } from "./employee.schema";
 const employeeServiceSchema = z.object({
   value: z.number(),
   service_type: z.string(),
-  service: z.string(),
-  employee: z.string(),
+  service: z.any(),
+  employee: z.any(),
 });
 
 const employeeServiceResponseSchema = z.object({
@@ -14,11 +14,13 @@ const employeeServiceResponseSchema = z.object({
   createdAt: z.date(),
   value: z.number(),
   service_type: z.string(),
+  service: z.any(),
+  employee: z.any(),
 });
 
-const listEmployeeServiceSchema = employeeServiceSchema.array();
+const listEmployeeServiceSchema = employeeServiceResponseSchema.array();
 
-const employeeServiceUpdateSchema = employeeSchema.partial();
+const employeeServiceUpdateSchema = employeeServiceSchema.partial();
 
 export {
   employeeServiceSchema,
