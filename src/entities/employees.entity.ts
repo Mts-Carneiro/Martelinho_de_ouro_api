@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import User from "./user.entity";
-import Employee_service from "./employees_service.entity";
 
 @Entity("employees")
 class Employee {
@@ -23,13 +22,6 @@ class Employee {
 
   @ManyToOne(() => User, (user) => user.employee, { onDelete: "CASCADE" })
   user: User;
-
-  @OneToMany(
-    () => Employee_service,
-    (employee_service) => employee_service.employee,
-    { onDelete: "CASCADE" }
-  )
-  employee_service: Employee_service[];
 }
 
 export default Employee;

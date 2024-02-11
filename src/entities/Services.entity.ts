@@ -9,7 +9,6 @@ import {
 } from "typeorm";
 import User from "./user.entity";
 import Cost from "./costs.entity";
-import Employee_service from "./employees_service.entity";
 
 @Entity("services")
 class Service {
@@ -45,13 +44,6 @@ class Service {
 
   @OneToMany(() => Cost, (cost) => cost.service, { cascade: true })
   cost: Cost[];
-
-  @OneToMany(
-    () => Employee_service,
-    (employee_service) => employee_service.service,
-    { onDelete: "CASCADE" }
-  )
-  employee_service: Employee_service[];
 }
 
 export default Service;

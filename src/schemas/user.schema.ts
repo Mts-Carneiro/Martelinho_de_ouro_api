@@ -1,7 +1,9 @@
 import { z } from "zod";
 
 const userSchema = z.object({
-  name: z.string(),
+  trading_name: z.string(),
+  CNPJ: z.string(),
+  phone: z.number(),
   email: z.string(),
   password: z.string(),
 });
@@ -14,7 +16,9 @@ const sendEmailRequest = z.object({
 
 const userResponseSchema = z.object({
   id: z.string(),
-  name: z.string(),
+  trading_name: z.string(),
+  CNPJ: z.string(),
+  phone: z.number(),
   email: z.string(),
   createdAt: z.date(),
 });

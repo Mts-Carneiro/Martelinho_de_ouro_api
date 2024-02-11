@@ -3,6 +3,8 @@ import {
   createUserController,
   deleteUserController,
   getUsersController,
+  resetPasswordController,
+  sendResetEmailPasswordController,
   updateUserController,
   userRetriveController,
 } from "../controllers/user.controller";
@@ -29,5 +31,9 @@ userRoutes.patch(
   updateUserController
 );
 userRoutes.delete("", ensureAuthMiddleware, deleteUserController);
+
+userRoutes.post("/resetPassword", sendResetEmailPasswordController);
+
+userRoutes.patch("/resetPassword/:token", resetPasswordController);
 
 export default userRoutes;

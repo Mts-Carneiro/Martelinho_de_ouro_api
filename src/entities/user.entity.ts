@@ -18,13 +18,22 @@ class User {
   id: string;
 
   @Column({ length: 40 })
-  name: string;
+  trading_name: string;
 
   @Column({ length: 40, unique: true })
   email: string;
 
   @Column()
   password: string;
+
+  @Column()
+  CNPJ: string;
+
+  @Column()
+  phone: number;
+
+  @Column({ nullable: true })
+  reset_token: string;
 
   @CreateDateColumn()
   createdAt: Date;
