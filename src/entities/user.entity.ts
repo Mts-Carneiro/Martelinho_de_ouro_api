@@ -30,7 +30,7 @@ class User {
   CNPJ: string;
 
   @Column()
-  phone: number;
+  phone: string;
 
   @Column({ nullable: true })
   reset_token: string;

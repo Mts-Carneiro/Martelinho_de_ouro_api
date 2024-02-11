@@ -3,7 +3,7 @@ import { z } from "zod";
 const userSchema = z.object({
   trading_name: z.string(),
   CNPJ: z.string(),
-  phone: z.number(),
+  phone: z.string(),
   email: z.string(),
   password: z.string(),
 });
@@ -18,7 +18,7 @@ const userResponseSchema = z.object({
   id: z.string(),
   trading_name: z.string(),
   CNPJ: z.string(),
-  phone: z.number(),
+  phone: z.string(),
   email: z.string(),
   createdAt: z.date(),
 });

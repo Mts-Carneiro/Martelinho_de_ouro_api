@@ -7,7 +7,6 @@ import costRoutes from "./routes/cost.routes";
 import liabilityRoutes from "./routes/liability.routes";
 import serviceRoutes from "./routes/service.routes";
 import employeesRoutes from "./routes/employer.routes";
-import employeeServiceRoutes from "./routes/EmployeeService.routes";
 import handleError from "./errors/handleError";
 
 const app = express();
@@ -22,7 +21,6 @@ app.use("/cost", costRoutes);
 app.use("/liability", liabilityRoutes);
 app.use("/service", serviceRoutes);
 app.use("/employer", employeesRoutes);
-app.use("/employerService", employeeServiceRoutes);
 
 app.use(handleError);
 
