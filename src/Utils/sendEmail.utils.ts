@@ -1,7 +1,7 @@
 import { createTransport } from "nodemailer";
 import "dotenv/config";
 import Mailgen from "mailgen";
-//import { ISendEmailRequest } from "../interfaces/user.Interface";
+import { ISendEmailRequest } from "../interfaces/user.interface";
 import { AppError } from "../errors/AppError";
 
 class EmailService {
@@ -16,7 +16,7 @@ class EmailService {
 
     await transporter
       .sendMail({
-        from: "jeanmbiz@gmail.com",
+        from: "mtscrn21@gmail.com",
         to,
         subject,
         html: text,
@@ -40,7 +40,7 @@ class EmailService {
     const mailGenerator = new Mailgen({
       theme: "default",
       product: {
-        name: "MotorsShop",
+        name: "AutoCar Manager",
         link: `http://localhost:5173/`,
       },
     });
@@ -49,17 +49,17 @@ class EmailService {
       body: {
         name: userName,
         intro:
-          "You have received this email because a password reset request for your account was received.",
+          "Você recebeu esse e-mail porque uma solicitação de redefinição de senha para sua conta foi recebida.",
         action: {
-          instructions: "Click the button below to reset your password:",
+          instructions: "Clique no botão abaixo para redefinir sua senha:",
           button: {
             color: "#DC4D2F",
-            text: "Reset your password",
+            text: "Redefinir Senha",
             link: `http://localhost:5173/user/resetPassword/${resetToken}`,
           },
         },
         outro:
-          "If you did not request a password reset, no further action is required on your part.",
+          "Se você não solicitou uma redefinição de senha, nenhuma outra ação será necessária de sua parte.",
       },
     };
 
