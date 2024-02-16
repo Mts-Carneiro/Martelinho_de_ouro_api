@@ -8,6 +8,7 @@ const serviceSchema = z.object({
     .string()
     .length(7, "The plate numbering must be seven digits long"),
   description: z.string(),
+  phone: z.string(),
   value: z.number(),
   status: z.string(),
   delivery_date: z.date(),

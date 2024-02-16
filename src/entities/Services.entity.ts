@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import User from "./user.entity";
-import Cost from "./costs.entity";
+import Part from "./parts.entity";
 
 @Entity("services")
 class Service {
@@ -20,6 +20,9 @@ class Service {
 
   @Column({ length: 50 })
   vehicle: string;
+
+  @Column({ length: 50 })
+  phone: string;
 
   @Column({ length: 7 })
   license_plate: string;
@@ -42,8 +45,8 @@ class Service {
   @ManyToOne(() => User, (user) => user.services, { onDelete: "CASCADE" })
   user: User;
 
-  @OneToMany(() => Cost, (cost) => cost.service, { cascade: true })
-  cost: Cost[];
+  @OneToMany(() => Part, (part) => part.service, { cascade: true })
+  part: Part[];
 }
 
 export default Service;

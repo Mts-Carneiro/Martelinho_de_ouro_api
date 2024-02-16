@@ -1,43 +1,44 @@
 import { Router } from "express";
 import { ensureAuthMiddleware } from "../middleware/ensureAuth.middleware";
-import {
-  createCostController,
-  deleteCostController,
-  listCostsController,
-  retriveCostController,
-  updateCostController,
-} from "../controllers/cost.controller";
+
 import ensureDataIsValidMiddleware from "../middleware/ensureDetailIsValid.middleware";
-import { costSchema, costUpdateSchema } from "../schemas/cost.schema";
 import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
+import {
+  createPartController,
+  deletePartController,
+  listPartsController,
+  retrivePartController,
+  updatePartController,
+} from "../controllers/part.controller";
+import { partSchema, partUpdateSchema } from "../schemas/part.schema";
 
-const costRoutes = Router();
+const partRoutes = Router();
 
-costRoutes.get("", ensureAuthMiddleware, listCostsController);
-costRoutes.post(
+partRoutes.get("", ensureAuthMiddleware, listPartsController);
+partRoutes.post(
   "",
   ensureAuthMiddleware,
-  ensureDataIsValidMiddleware(costSchema),
-  createCostController
+  ensureDataIsValidMiddleware(partSchema),
+  createPartController
 );
-costRoutes.get(
+partRoutes.get(
   "/:id",
   ensureAuthMiddleware,
   ensureUUIDIsValid,
-  retriveCostController
+  retrivePartController
 );
-costRoutes.patch(
+partRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureUUIDIsValid,
-  ensureDataIsValidMiddleware(costUpdateSchema),
-  updateCostController
+  ensureDataIsValidMiddleware(partUpdateSchema),
+  updatePartController
 );
-costRoutes.delete(
+partRoutes.delete(
   "/:id",
   ensureAuthMiddleware,
   ensureUUIDIsValid,
-  deleteCostController
+  deletePartController
 );
 
-export default costRoutes;
+export default partRoutes;
