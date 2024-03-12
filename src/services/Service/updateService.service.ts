@@ -10,6 +10,7 @@ import {
   IServiceRequest,
   IServiceUpdate,
 } from "../../interfaces/service.interface";
+import { DeepPartial } from "typeorm";
 
 export const updateServiceService = async (
   serviceId: string,
@@ -25,9 +26,20 @@ export const updateServiceService = async (
     throw new AppError("Service not exist", 409);
   }
 
-  const newService = serviceRepo.create({
-    ...service,
+  const newData = {
     ...data,
+    delivery_date: data.delivery_date
+      ? new Date(data.delivery_date)
+      : undefined,
+  };
+
+  const newService: DeepPartial<Service> = serviceRepo.create({
+    ...service,
+    ...newData,
+    delivery_date:
+      newData.delivery_date instanceof Date
+        ? newData.delivery_date
+        : service.delivery_date,
   });
 
   await serviceRepo.save(newService);
