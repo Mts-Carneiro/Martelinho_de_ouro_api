@@ -17,12 +17,7 @@ import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
 const assetRoutes = Router();
 
 assetRoutes.get("", ensureAuthMiddleware, listAllAssetsController);
-assetRoutes.post(
-  "",
-  ensureAuthMiddleware,
-  ensureDataIsValidMiddleware(cashOperationSchema),
-  createAssetController
-);
+assetRoutes.post("", ensureAuthMiddleware, createAssetController);
 assetRoutes.get(
   "/:id",
   ensureAuthMiddleware,
@@ -33,7 +28,6 @@ assetRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureUUIDIsValid,
-  ensureDataIsValidMiddleware(cashOperationUpdateSchema),
   updateAssetController
 );
 assetRoutes.delete(

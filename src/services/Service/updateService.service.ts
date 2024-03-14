@@ -11,6 +11,7 @@ import {
   IServiceUpdate,
 } from "../../interfaces/service.interface";
 import { DeepPartial } from "typeorm";
+import { parseISO } from "date-fns";
 
 export const updateServiceService = async (
   serviceId: string,
@@ -29,7 +30,7 @@ export const updateServiceService = async (
   const newData = {
     ...data,
     delivery_date: data.delivery_date
-      ? new Date(data.delivery_date)
+      ? parseISO(data.delivery_date)
       : undefined,
   };
 

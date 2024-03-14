@@ -25,8 +25,11 @@ export const createAssetService = async (
 
   const asset = assetRepo.create({
     ...data,
+    date: new Date(data?.date),
     user: user,
   });
+
+  console.log(asset);
 
   await assetRepo.save(asset);
 
