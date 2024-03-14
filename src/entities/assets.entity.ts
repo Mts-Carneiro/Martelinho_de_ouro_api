@@ -24,6 +24,9 @@ class Asset {
   @Column()
   value: number;
 
+  @Column()
+  date: Date;
+
   @CreateDateColumn()
   createdAt: string;
 
