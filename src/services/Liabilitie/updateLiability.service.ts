@@ -1,12 +1,8 @@
 import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import Liabilities from "../../entities/liabilities.entity";
-import {
-  ICashOperation,
-  ICashOperationUpdate,
-} from "../../interfaces/cash_operation.interface";
+import { ICashOperation } from "../../interfaces/cash_operation.interface";
 import { cashOperationResponseSchema } from "../../schemas/cash_operation.schema";
-import { DeepPartial } from "typeorm";
 import { parseISO } from "date-fns";
 
 export const updateLiabilityService = async (
