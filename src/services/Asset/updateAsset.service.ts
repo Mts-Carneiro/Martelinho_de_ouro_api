@@ -1,7 +1,6 @@
 import AppDataSource from "../../data-source";
 import Asset from "../../entities/assets.entity";
 import { cashOperationResponseSchema } from "../../schemas/cash_operation.schema";
-import { DeepPartial } from "typeorm";
 import { parseISO } from "date-fns";
 
 export const updateAssetService = async (id: string, data: any) => {

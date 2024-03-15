@@ -24,6 +24,9 @@ class Liabilities {
   @Column()
   value: number;
 
+  @Column()
+  date: Date;
+
   @CreateDateColumn()
   createdAt: string;
 

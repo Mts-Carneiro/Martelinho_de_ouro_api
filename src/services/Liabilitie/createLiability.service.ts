@@ -25,6 +25,7 @@ export const createLiabilityService = async (
 
   const liability = liabilityRepo.create({
     ...data,
+    date: new Date(data?.date),
     user: user,
   });
 

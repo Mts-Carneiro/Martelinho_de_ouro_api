@@ -17,12 +17,7 @@ import ensureUUIDIsValid from "../middleware/ensureUUIDIsValid.middleware";
 const liabilityRoutes = Router();
 
 liabilityRoutes.get("", ensureAuthMiddleware, listAllLiabilitiesController);
-liabilityRoutes.post(
-  "",
-  ensureAuthMiddleware,
-  ensureDataIsValidMiddleware(cashOperationSchema),
-  createLiabilityController
-);
+liabilityRoutes.post("", ensureAuthMiddleware, createLiabilityController);
 liabilityRoutes.get(
   "/:id",
   ensureAuthMiddleware,
@@ -33,7 +28,6 @@ liabilityRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureUUIDIsValid,
-  ensureDataIsValidMiddleware(cashOperationUpdateSchema),
   updateLiabilityController
 );
 liabilityRoutes.delete(

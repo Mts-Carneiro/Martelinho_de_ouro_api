@@ -6,9 +6,11 @@ import {
   ICashOperationUpdate,
 } from "../../interfaces/cash_operation.interface";
 import { cashOperationResponseSchema } from "../../schemas/cash_operation.schema";
+import { DeepPartial } from "typeorm";
+import { parseISO } from "date-fns";
 
 export const updateLiabilityService = async (
-  data: ICashOperationUpdate,
+  data: any,
   id: string
 ): Promise<ICashOperation> => {
   const liabilityRepo = AppDataSource.getRepository(Liabilities);
@@ -21,9 +23,15 @@ export const updateLiabilityService = async (
     throw new AppError("Liability not exist", 409);
   }
 
+  const newData = {
+    ...data,
+    date: data.date ? parseISO(data.date) : undefined,
+  };
+
   const newLiability = liabilityRepo.create({
     ...liability,
-    ...data,
+    ...newData,
+    date: newData.date instanceof Date ? newData.date : liability?.date,
   });
 
   await liabilityRepo.save(newLiability);
