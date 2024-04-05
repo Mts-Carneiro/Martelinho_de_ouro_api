@@ -1,11 +1,13 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user.entity";
+import { IUser, IUserUpdate } from "../../interfaces/user.interface";
+import { userResponseSchema } from "../../schemas/user.schema";
 
 export const updateUserService = async (
-  updateUserBody: any,
+  updateUserBody: IUserUpdate,
   userId: string
-) => {
-  const userRepository = AppDataSource.getRepository(User);
+): Promise<IUser> => {
+  const userRepository = AppDataSource.getRepository<User>(User);
 
   const oldUser = await userRepository.findOneBy({
     id: userId,
@@ -18,5 +20,7 @@ export const updateUserService = async (
 
   await userRepository.save(newUser);
 
-  return newUser;
+  const returnUser = userResponseSchema.parse(newUser);
+
+  return returnUser;
 };

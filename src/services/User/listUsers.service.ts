@@ -1,10 +1,14 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user.entity";
+import { IUsers } from "../../interfaces/user.interface";
+import { listUserSchema } from "../../schemas/user.schema";
 
-export const getUsersService = async () => {
+export const getUsersService = async (): Promise<IUsers> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const users = userRepository.find();
+  const users = await userRepository.find();
 
-  return users;
+  const usersReturn = listUserSchema.parse(users);
+
+  return usersReturn;
 };

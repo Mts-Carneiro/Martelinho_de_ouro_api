@@ -1,12 +1,12 @@
-import { assert } from "console";
 import AppDataSource from "../../data-source";
 import Asset from "../../entities/assets.entity";
 import { AppError } from "../../errors/AppError";
+import { cashOperationResponseSchema } from "../../schemas/cash_operation.schema";
 
 export const retriveAssetService = async (id: string) => {
   const assetRepo = AppDataSource.getRepository(Asset);
 
-  const asset = assetRepo.findOneBy({
+  const asset = await assetRepo.findOneBy({
     id: id,
   });
 
@@ -14,5 +14,7 @@ export const retriveAssetService = async (id: string) => {
     throw new AppError("Asset not exist", 409);
   }
 
-  return assert;
+  const response = cashOperationResponseSchema.parse(asset);
+
+  return response;
 };

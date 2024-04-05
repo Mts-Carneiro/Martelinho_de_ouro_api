@@ -13,7 +13,7 @@ class Liabilities {
   id: string;
 
   @Column({ length: 50 })
-  Tipe: string;
+  tipe: string;
 
   @Column({ length: 50 })
   name: string;
@@ -23,6 +23,9 @@ class Liabilities {
 
   @Column()
   value: number;
+
+  @Column()
+  date: Date;
 
   @CreateDateColumn()
   createdAt: string;

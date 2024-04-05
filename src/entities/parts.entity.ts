@@ -7,8 +7,8 @@ import {
 } from "typeorm";
 import Service from "./Services.entity";
 
-@Entity("costs")
-class Cost {
+@Entity("Part")
+class Part {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -16,10 +16,13 @@ class Cost {
   name: string;
 
   @Column()
+  tipe: string;
+
+  @Column()
   value: number;
 
-  @ManyToOne(() => Service, (service) => service.cost, { onDelete: "CASCADE" })
+  @ManyToOne(() => Service, (service) => service.part, { onDelete: "CASCADE" })
   service: Service;
 }
 
-export default Cost;
+export default Part;
