@@ -29,6 +29,8 @@ export const createLiabilityService = async (
     user: user,
   });
 
+  console.log(liability)
+
   await liabilityRepo.save(liability);
 
   const response = cashOperationResponseSchema.parse(liability);
