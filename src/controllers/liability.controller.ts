@@ -10,7 +10,7 @@ export const createLiabilityController = async (
   res: Response
 ) => {
   const data = req.body;
-  const userId = req.params.id;
+  const userId = req.user.id;
 
   const liability = await createLiabilityService(data, userId);
 
