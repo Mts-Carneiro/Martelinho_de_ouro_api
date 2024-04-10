@@ -14,7 +14,9 @@ export const createAssetController = async (req: Request, res: Response) => {
 };
 
 export const listAllAssetsController = async (req: Request, res: Response) => {
-  const assets = await listAllAssetsService();
+  const userId = req.user.id;
+
+  const assets = await listAllAssetsService(userId);
 
   return res.status(200).json(assets);
 };
