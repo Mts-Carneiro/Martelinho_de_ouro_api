@@ -20,7 +20,6 @@ export const listAllLiabilitiesServices = async (
     },
   });
 
-  console.log(liabilitiesList)
 
   if (!liabilitiesList) {
     throw new AppError("Liabilities not exist", 409);
