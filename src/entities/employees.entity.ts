@@ -17,6 +17,15 @@ class Employee {
   @Column({ length: 50 })
   name: string;
 
+  @Column()
+  contact: string;
+
+  @Column()
+  remuneration: string;
+
+  @Column()
+  pix: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

@@ -29,8 +29,6 @@ export const createAssetService = async (
     user: user,
   });
 
-  console.log(asset);
-
   await assetRepo.save(asset);
 
   const response = cashOperationResponseSchema.parse(asset);
