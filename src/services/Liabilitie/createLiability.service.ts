@@ -15,8 +15,10 @@ export const createLiabilityService = async (
   const liabilityRepo = AppDataSource.getRepository(Liabilities);
   const userRepo = AppDataSource.getRepository(User);
 
-  const user = await userRepo.findOneBy({
-    id: userId,
+  const user = await userRepo.findOne({
+    where: {
+      id: userId,
+    },
   });
 
   if (!user) {
